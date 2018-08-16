@@ -169,7 +169,8 @@ resource "vsphere_virtual_machine" "nodejs_vm" {
   datastore_id     = "${data.vsphere_datastore.nodejs_vm_datastore.id}"
   guest_id         = "${data.vsphere_virtual_machine.nodejs_vm_template.guest_id}"
   scsi_type        = "${data.vsphere_virtual_machine.nodejs_vm_template.scsi_type}"
-
+  scsi_controller_count = "2"
+   
   clone {
     template_uuid = "${data.vsphere_virtual_machine.nodejs_vm_template.id}"
 
@@ -203,9 +204,10 @@ resource "vsphere_virtual_machine" "nodejs_vm" {
   }
 
   disk {
+    label = "DirectLVM14.vmdk"
     size = "100"
-    label = "DirectLVM_2"
-    type = "thin"
+    thin_provisioned = "true"
+    unit_number = "14"
   }
 
   connection {
