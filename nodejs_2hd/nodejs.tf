@@ -204,7 +204,7 @@ resource "vsphere_virtual_machine" "nodejs_vm" {
 
   disk {
     size = "100"
-    name = "DirectLVM_2"
+    label = "DirectLVM_2"
     type = "thin"
   }
 
