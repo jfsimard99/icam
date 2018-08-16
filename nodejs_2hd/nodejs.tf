@@ -206,7 +206,6 @@ resource "vsphere_virtual_machine" "nodejs_vm" {
   disk {
     label = "DirectLVM14.vmdk"
     size = "100"
-    thin_provisioned = "true"
     unit_number = "14"
   }
 
