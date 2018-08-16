@@ -152,7 +152,7 @@ variable "nodejs_vm_root_disk_keep_on_remove" {
 
 variable "nodejs_vm_root_disk_size" {
   description = "Size of template disk volume. Should be equal to template's disk size"
-  default     = "25"
+  default     = "120"
 }
 
 variable "nodejs_vm_image" {
@@ -162,6 +162,7 @@ variable "nodejs_vm_image" {
 variable "virtual_disk_directlvm_size" {
   type = "string"
   description = "Generated"
+  default     = "100"
 }
 
 variable "virtual_disk_directlvm_vmdk_path" {
