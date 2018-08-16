@@ -195,6 +195,14 @@ variable "virtual_disk_directlvm_unit_number" {
   description = "The disk number on the SCSI bus. The maximum value for this setting is the value of scsi_controller_count times 15, minus 1 (so 14, 29, 44, and 59, for 1-4 controllers respectively). The default is 0, for which one disk must be set to. Duplicate unit numbers are not allowed."
 }
 
+resource "vsphere_virtual_disk" "virtual_disk_directlvm" {
+  size          = "${var.virtual_disk_directlvm_size}"
+  vmdk_path     = "${var.virtual_disk_directlvm_vmdk_path}"
+  datacenter    = "${var.virtual_disk_directlvm_datacenter_name}"
+  datastore     = "${var.virtual_disk_directlvm_datastore_name}"
+  type          = "${var.virtual_disk_directlvm_disk_type}"
+}
+
 # vsphere vm
 resource "vsphere_virtual_machine" "nodejs_vm" {
   name             = "${var.nodejs_vm_name}"
@@ -239,9 +247,8 @@ resource "vsphere_virtual_machine" "nodejs_vm" {
   }
   disk {
     attach = true
-    label  = "${var.virtual_disk_directlvm_disk_label}"
-    path   = "${vsphere_virtual_disk.virtual_disk_directlvm.vmdk_path}"
-    unit_number = "${var.virtual_disk_directlvm_unit_number}"
+    label  = "directlvm1.vmdk"
+    size   = "${var.virtual_disk_directlvm_size}"
   }
 
   connection {
@@ -288,14 +295,6 @@ EOF
       "chmod +x /tmp/installation.sh; bash /tmp/installation.sh",
     ]
   }
-}
-
-resource "vsphere_virtual_disk" "virtual_disk_directlvm" {
-  size          = "${var.virtual_disk_directlvm_size}"
-  vmdk_path     = "${var.virtual_disk_directlvm_vmdk_path}"
-  datacenter    = "${var.virtual_disk_directlvm_datacenter_name}"
-  datastore     = "${var.virtual_disk_directlvm_datastore_name}"
-  type          = "${var.virtual_disk_directlvm_disk_type}"
 }
 
 #########################################################
