@@ -168,6 +168,7 @@ variable "virtual_disk_directlvm_size" {
 variable "virtual_disk_directlvm_vmdk_path" {
   type = "string"
   description = "Generated"
+  default     = ""
 }
 
 variable "virtual_disk_directlvm_datacenter_name" {
@@ -178,6 +179,7 @@ variable "virtual_disk_directlvm_datacenter_name" {
 variable "virtual_disk_directlvm_datastore_name" {
   type = "string"
   description = "The name of the datastore in which to create the disk."
+  default = "directlvmstore"
 }
 
 variable "virtual_disk_directlvm_disk_type" {
