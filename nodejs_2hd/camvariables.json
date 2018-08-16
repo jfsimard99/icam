@@ -1,8 +1,6 @@
 {
+  "input_datatypes": [],
   "output_datatype": "content_template_output",
-  "input_datatypes": [ ],
-  "input_namespaces": [ ],
-  "output_namespace": "",
   "input_groups": [
     {
       "name": "cloud",
@@ -19,337 +17,126 @@
     {
       "name": "image_parameters",
       "label": "Image Parameters"
-    },
-    {
-      "name": "vsphere_virtual_disk_storage",
-      "label": "vsphere_virtual_disk Storage"
     }
   ],
-  "output_groups": [  {
-    "name": "content_template_output",
-    "label": "Outputs"
-  } ],
+  "output_groups": [
+    {
+      "name": "content_template_output",
+      "label": "Outputs"
+    }
+  ],
   "template_input_params": [
     {
       "name": "allow_unverified_ssl",
-      "label": "Communication with vsphere server with self signed certificate",
-      "description": "Communication with vsphere server with self signed certificate",
       "type": "string",
+      "description": "Communication with vsphere server with self signed certificate",
       "default": true,
-      "validation": "",
-      "group_name": "cloud",
-      "required": true,
-      "secured": false,
       "hidden": true,
+      "label": "Communication with vsphere server with self signed certificate",
+      "secured": false,
+      "required": true,
       "immutable": false,
-      "immutable_after_create": false
+      "group_name": "cloud"
     },
     {
       "name": "nodejs_vm_name",
-      "label": "nodejs Vm Short Host name",
+      "type": "string",
       "description": "Short host name of nodejs vm",
-      "type": "string",
       "default": "nodejs-vm",
-      "validation": "",
-      "group_name": "virtualmachine",
+      "hidden": false,
+      "label": "nodejs Vm Short Host name",
+      "secured": false,
       "required": true,
-      "secured": false,
-      "hidden": false,
       "immutable": false,
-      "immutable_after_create": false
-    },
-    {
-      "name": "ssh_user",
-      "label": "SSH User",
-      "description": "The user for ssh connection, which is default in template",
-      "type": "string",
-      "default": "root",
-      "validation": "",
-      "group_name": "virtualmachine",
-      "required": true,
-      "secured": false,
-      "hidden": false,
-      "immutable": false,
-      "immutable_after_create": false
-    },
-    {
-      "name": "ssh_user_password",
-      "label": "SSH User Password",
-      "description": "The user password for ssh connection, which is default in template",
-      "type": "password",
-      "default": "",
-      "validation": "",
-      "group_name": "virtualmachine",
-      "required": true,
-      "secured": true,
-      "hidden": false,
-      "immutable": false,
-      "immutable_after_create": false
-    },
-    {
-      "name": "nodejs_vm_folder",
-      "label": "vSphere Folder Name - nodejs_vm",
-      "description": "Target vSphere folder for virtual machine",
-      "type": "string",
-      "default": "",
-      "validation": "",
-      "group_name": "cloud",
-      "required": false,
-      "secured": false,
-      "hidden": false,
-      "immutable": false,
-      "immutable_after_create": false
-    },
-    {
-      "name": "nodejs_vm_datacenter",
-      "label": "vSphere Datacenter - nodejs_vm",
-      "description": "Target vSphere datacenter for virtual machine creation",
-      "type": "string",
-      "default": "",
-      "validation": "",
-      "group_name": "cloud",
-      "required": false,
-      "secured": false,
-      "hidden": false,
-      "immutable": false,
-      "immutable_after_create": false
-    },
-    {
-      "name": "nodejs_vm_domain",
-      "label": "Domain Name - nodejs_vm",
-      "description": "Domain Name of virtual machine",
-      "type": "string",
-      "default": "",
-      "validation": "",
-      "group_name": "virtualmachine",
-      "required": true,
-      "secured": false,
-      "hidden": false,
-      "immutable": false,
-      "immutable_after_create": false
-    },
-    {
-      "name": "nodejs_vm_number_of_vcpu",
-      "label": "Virtual Machine vCPUs - nodejs_vm",
-      "description": "Number of virtual CPU for the virtual machine, which is required to be a positive Integer",
-      "type": "string",
-      "default": "1",
-      "validation": "",
-      "group_name": "virtualmachine",
-      "required": true,
-      "secured": false,
-      "hidden": false,
-      "immutable": false,
-      "immutable_after_create": false
-    },
-    {
-      "name": "nodejs_vm_memory",
-      "label": "Virtual Machine Memory - nodejs_vm",
-      "description": "Memory assigned to the virtual machine in megabytes. This value is required to be an increment of 1024",
-      "type": "string",
-      "default": "1024",
-      "validation": "",
-      "group_name": "virtualmachine",
-      "required": true,
-      "secured": false,
-      "hidden": false,
-      "immutable": false,
-      "immutable_after_create": false
-    },
-    {
-      "name": "nodejs_vm_cluster",
-      "label": "vSphere Cluster - nodejs_vm",
-      "description": "Target vSphere cluster to host the virtual machine",
-      "type": "string",
-      "default": "",
-      "validation": "",
-      "group_name": "cloud",
-      "required": false,
-      "secured": false,
-      "hidden": false,
-      "immutable": false,
-      "immutable_after_create": false
-    },
-    {
-      "name": "nodejs_vm_resource_pool",
-      "label": "vSphere Resource Pool - nodejs_vm",
-      "description": "Target vSphere Resource Pool to host the virtual machine",
-      "type": "string",
-      "default": "",
-      "validation": "",
-      "group_name": "virtualmachine",
-      "required": false,
-      "secured": false,
-      "hidden": false,
-      "immutable": false,
-      "immutable_after_create": false
-    },
-    {
-      "name": "nodejs_vm_dns_suffixes",
-      "label": "DNS Suffixes - nodejs_vm",
-      "description": "Name resolution suffixes for the virtual network adapter",
-      "type": "list",
-      "default": "",
-      "validation": "",
-      "group_name": "virtualmachine",
-      "required": true,
-      "secured": false,
-      "hidden": false,
-      "immutable": false,
-      "immutable_after_create": false
+      "group_name": "virtualmachine"
     },
     {
       "name": "nodejs_vm_dns_servers",
-      "label": "DNS Servers - nodejs_vm",
-      "description": "DNS servers for the virtual network adapter",
       "type": "list",
-      "default": "",
-      "validation": "",
-      "group_name": "virtualmachine",
-      "required": true,
-      "secured": false,
+      "description": "DNS servers for the virtual network adapter",
       "hidden": false,
+      "label": "DNS Servers - nodejs_vm",
+      "secured": false,
+      "required": true,
       "immutable": false,
-      "immutable_after_create": false
+      "group_name": "virtualmachine"
     },
     {
-      "name": "nodejs_vm_network_interface_label",
-      "label": "Virtual Machine vSphere Port Group - nodejs_vm",
-      "description": "vSphere port group or network label for virtual machine's vNIC",
-      "type": "string",
-      "default": "",
-      "validation": "",
-      "group_name": "virtualmachine",
-      "required": true,
-      "secured": false,
+      "name": "nodejs_vm_dns_suffixes",
+      "type": "list",
+      "description": "Name resolution suffixes for the virtual network adapter",
       "hidden": false,
+      "label": "DNS Suffixes - nodejs_vm",
+      "secured": false,
+      "required": true,
       "immutable": false,
-      "immutable_after_create": false
+      "group_name": "virtualmachine"
     },
     {
-      "name": "nodejs_vm_ipv4_gateway",
-      "label": "Virtual Machine Gateway Address - nodejs_vm",
-      "description": "IPv4 gateway for vNIC configuration",
+      "name": "nodejs_vm_root_disk_keep_on_remove",
       "type": "string",
-      "default": "",
-      "validation": "",
-      "group_name": "virtualmachine",
-      "required": true,
+      "description": "Delete template disk volume when the virtual machine is deleted",
+      "default": "false",
+      "hidden": true,
+      "label": "Delete template disk volume when the virtual machine is deleted - nodejs_vm",
       "secured": false,
-      "hidden": false,
-      "immutable": false,
-      "immutable_after_create": false
-    },
-    {
-      "name": "nodejs_vm_ipv4_address",
-      "label": "Virtual Machine IP Address - nodejs_vm",
-      "description": "IPv4 address for vNIC configuration",
-      "type": "string",
-      "default": "",
-      "validation": "",
-      "group_name": "virtualmachine",
-      "required": true,
-      "secured": false,
-      "hidden": false,
-      "immutable": false,
-      "immutable_after_create": false
-    },
-    {
-      "name": "nodejs_vm_ipv4_prefix_length",
-      "label": "Virtual Machine Netmask Prefix - nodejs_vm",
-      "description": "IPv4 prefix length for vNIC configuration. The value must be a number between 8 and 32",
-      "type": "string",
-      "default": "",
-      "validation": "",
-      "group_name": "virtualmachine",
-      "required": true,
-      "secured": false,
-      "hidden": false,
-      "immutable": false,
-      "immutable_after_create": false
-    },
-    {
-      "name": "nodejs_vm_adapter_type",
-      "label": "vSphere Network Adapter Type - nodejs_vm",
-      "description": "Network adapter type for vNIC Configuration",
-      "type": "string",
-      "default": "vmxnet3",
-      "validation": "",
-      "group_name": "virtualmachine",
-      "required": true,
-      "secured": false,
-      "hidden": false,
-      "immutable": false,
-      "immutable_after_create": false,
       "options": [
         {
-          "value": "vmxnet3",
-          "label": "vmxnet3",
+          "value": "false",
+          "label": "False",
           "default": "true"
         },
         {
-          "value": "e1000",
-          "default": "e1000"
+          "value": "true",
+          "label": "True"
         }
-      ]
+      ],
+      "required": true,
+      "immutable": false,
+      "group_name": "virtualmachine"
     },
     {
-      "name": "nodejs_vm_root_disk_datastore",
-      "label": "Template Disk Datastore - nodejs_vm",
-      "description": "Data store or storage cluster name for target virtual machine's disks",
+      "name": "nodejs_vm_domain",
       "type": "string",
-      "default": "",
-      "validation": "",
-      "group_name": "virtualmachine",
-      "required": true,
-      "secured": false,
+      "description": "Domain Name of virtual machine",
       "hidden": false,
+      "label": "Domain Name - nodejs_vm",
+      "secured": false,
+      "required": true,
       "immutable": false,
-      "immutable_after_create": false
+      "group_name": "virtualmachine"
     },
     {
-      "name": "nodejs_vm_root_disk_type",
-      "label": "Template Disk Type - nodejs_vm",
-      "description": "Type of template disk volume",
+      "name": "nodejs_vm_image",
       "type": "string",
-      "default": "eager_zeroed",
-      "validation": "",
-      "group_name": "virtualmachine",
-      "required": true,
-      "secured": false,
+      "description": "Operating system image id / template that should be used when creating the virtual image",
       "hidden": false,
+      "label": "Operating System ID / Template - nodejs_vm",
+      "secured": false,
+      "required": true,
       "immutable": false,
-      "immutable_after_create": false,
-      "options": [
-        {
-          "value": "eager_zeroed",
-          "label": "Thick Provision Eager Zeroed",
-          "default": "true"
-        },
-        {
-          "value": "lazy",
-          "label": "Thick Provision Lazy Zeroed"
-        },
-        {
-          "value": "thin",
-          "label": "Thin Provision",
-          "group_name": "virtualmachine"
-        }
-      ]
+      "group_name": "virtualmachine"
+    },
+    {
+      "name": "nodejs_vm_root_disk_size",
+      "type": "string",
+      "description": "Size of template disk volume. Should be equal to template's disk size",
+      "default": "25",
+      "hidden": false,
+      "label": "Root Disk Size - nodejs_vm",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "virtualmachine"
     },
     {
       "name": "nodejs_vm_root_disk_controller_type",
-      "label": "Template Disk Controller - nodejs_vm",
-      "description": "Type of template disk controller",
       "type": "string",
+      "description": "Type of template disk controller",
       "default": "scsi",
-      "validation": "",
-      "group_name": "virtualmachine",
-      "required": true,
-      "secured": false,
       "hidden": false,
-      "immutable": false,
-      "immutable_after_create": false,
+      "label": "Template Disk Controller - nodejs_vm",
+      "secured": false,
       "options": [
         {
           "value": "scsi",
@@ -376,168 +163,208 @@
           "value": "ide",
           "label": "ide"
         }
-      ]
+      ],
+      "required": true,
+      "immutable": false,
+      "group_name": "virtualmachine"
     },
     {
-      "name": "nodejs_vm_root_disk_keep_on_remove",
-      "label": "Delete template disk volume when the virtual machine is deleted - nodejs_vm",
-      "description": "Delete template disk volume when the virtual machine is deleted",
+      "name": "nodejs_vm_root_disk_datastore",
       "type": "string",
-      "default": "false",
-      "validation": "",
-      "group_name": "virtualmachine",
-      "required": true,
+      "description": "Data store or storage cluster name for target virtual machine's disks",
+      "hidden": false,
+      "label": "Template Disk Datastore - nodejs_vm",
       "secured": false,
-      "hidden": true,
+      "required": true,
       "immutable": false,
-      "immutable_after_create": false,
+      "group_name": "virtualmachine"
+    },
+    {
+      "name": "nodejs_vm_root_disk_type",
+      "type": "string",
+      "description": "Type of template disk volume",
+      "default": "eager_zeroed",
+      "hidden": false,
+      "label": "Template Disk Type - nodejs_vm",
+      "secured": false,
       "options": [
         {
-          "value": "false",
-          "label": "False",
+          "value": "eager_zeroed",
+          "label": "Thick Provision Eager Zeroed",
           "default": "true"
         },
         {
-          "value": "true",
-          "label": "True"
+          "value": "lazy",
+          "label": "Thick Provision Lazy Zeroed"
+        },
+        {
+          "value": "thin",
+          "label": "Thin Provision",
+          "group_name": "virtualmachine"
         }
-      ]
-    },
-    {
-      "name": "nodejs_vm_root_disk_size",
-      "label": "Root Disk Size - nodejs_vm",
-      "description": "Size of template disk volume. Should be equal to template's disk size",
-      "type": "string",
-      "default": "120",
-      "validation": "",
-      "group_name": "virtualmachine",
+      ],
       "required": true,
-      "secured": false,
-      "hidden": false,
       "immutable": false,
-      "immutable_after_create": false
+      "group_name": "virtualmachine"
     },
     {
-      "name": "nodejs_vm_image",
-      "label": "Operating System ID / Template - nodejs_vm",
-      "description": "Operating system image id / template that should be used when creating the virtual image",
+      "name": "nodejs_vm_ipv4_gateway",
       "type": "string",
-      "default": "",
-      "validation": "",
-      "group_name": "virtualmachine",
+      "description": "IPv4 gateway for vNIC configuration",
+      "hidden": false,
+      "label": "Virtual Machine Gateway Address - nodejs_vm",
+      "secured": false,
       "required": true,
-      "secured": false,
-      "hidden": false,
       "immutable": false,
-      "immutable_after_create": false
+      "group_name": "virtualmachine"
     },
     {
-      "name": "virtual_disk_directlvm_size",
-      "label": "Virtual Disk Directlvm Size",
-      "description": "Generated",
+      "name": "nodejs_vm_ipv4_address",
       "type": "string",
-      "default": "100",
-      "validation": "",
-      "group_name": "vsphere_virtual_disk_storage",
+      "description": "IPv4 address for vNIC configuration",
+      "hidden": false,
+      "label": "Virtual Machine IP Address - nodejs_vm",
+      "secured": false,
       "required": true,
-      "secured": false,
-      "hidden": false,
       "immutable": false,
-      "immutable_after_create": false
+      "group_name": "virtualmachine"
     },
     {
-      "name": "virtual_disk_directlvm_vmdk_path",
-      "label": "Virtual Disk Directlvm Vmdk Path",
-      "description": "Generated",
+      "name": "nodejs_vm_memory",
       "type": "string",
-      "default": "",
-      "validation": "",
-      "group_name": "vsphere_virtual_disk_storage",
+      "description": "Memory assigned to the virtual machine in megabytes. This value is required to be an increment of 1024",
+      "default": "1024",
+      "hidden": false,
+      "label": "Virtual Machine Memory - nodejs_vm",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "virtualmachine"
+    },
+    {
+      "name": "nodejs_vm_ipv4_prefix_length",
+      "type": "string",
+      "description": "IPv4 prefix length for vNIC configuration. The value must be a number between 8 and 32",
+      "hidden": false,
+      "label": "Virtual Machine Netmask Prefix - nodejs_vm",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "virtualmachine"
+    },
+    {
+      "name": "nodejs_vm_number_of_vcpu",
+      "type": "string",
+      "description": "Number of virtual CPU for the virtual machine, which is required to be a positive Integer",
+      "default": "1",
+      "hidden": false,
+      "label": "Virtual Machine vCPUs - nodejs_vm",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "virtualmachine"
+    },
+    {
+      "name": "nodejs_vm_network_interface_label",
+      "type": "string",
+      "description": "vSphere port group or network label for virtual machine's vNIC",
+      "hidden": false,
+      "label": "Virtual Machine vSphere Port Group - nodejs_vm",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "virtualmachine"
+    },
+    {
+      "name": "nodejs_vm_cluster",
+      "type": "string",
+      "description": "Target vSphere cluster to host the virtual machine",
+      "hidden": false,
+      "label": "vSphere Cluster - nodejs_vm",
+      "secured": false,
       "required": false,
-      "secured": false,
-      "hidden": false,
       "immutable": false,
-      "immutable_after_create": false
+      "group_name": "cloud"
     },
     {
-      "name": "virtual_disk_directlvm_datacenter_name",
-      "label": "Virtual Disk Directlvm Datacenter Name",
-      "description": "The name of the datacenter in which to create the disk. Can be omitted when when ESXi or if there is only one datacenter in your infrastructure.",
+      "name": "nodejs_vm_datacenter",
       "type": "string",
-      "default": "",
-      "validation": "",
-      "group_name": "vsphere_virtual_disk_storage",
+      "description": "Target vSphere datacenter for virtual machine creation",
+      "hidden": false,
+      "label": "vSphere Datacenter - nodejs_vm",
+      "secured": false,
       "required": false,
-      "secured": false,
-      "hidden": false,
       "immutable": false,
-      "immutable_after_create": false
+      "group_name": "cloud"
     },
     {
-      "name": "virtual_disk_directlvm_datastore_name",
-      "label": "Virtual Disk Directlvm Datastore Name",
-      "description": "The name of the datastore in which to create the disk.",
+      "name": "nodejs_vm_folder",
       "type": "string",
-      "default": "",
-      "validation": "",
-      "group_name": "vsphere_virtual_disk_storage",
-      "required": true,
-      "secured": false,
+      "description": "Target vSphere folder for virtual machine",
       "hidden": false,
+      "label": "vSphere Folder Name - nodejs_vm",
+      "secured": false,
+      "required": false,
       "immutable": false,
-      "immutable_after_create": false
+      "group_name": "cloud"
     },
     {
-      "name": "virtual_disk_directlvm_disk_type",
-      "label": "Virtual Disk Directlvm Disk Type",
-      "description": "The type of disk to create. Can be one of eagerZeroedThick, lazy, or thin. Default: eagerZeroedThick.",
+      "name": "nodejs_vm_adapter_type",
       "type": "string",
-      "default": "thin",
-      "validation": "",
-      "group_name": "vsphere_virtual_disk_storage",
-      "required": true,
-      "secured": false,
+      "description": "Network adapter type for vNIC Configuration",
+      "default": "vmxnet3",
       "hidden": false,
+      "label": "vSphere Network Adapter Type - nodejs_vm",
+      "secured": false,
+      "options": [
+        {
+          "value": "vmxnet3",
+          "label": "vmxnet3",
+          "default": "true"
+        },
+        {
+          "value": "e1000",
+          "default": "e1000"
+        }
+      ],
+      "required": true,
       "immutable": false,
-      "immutable_after_create": false
+      "group_name": "virtualmachine"
     },
     {
-      "name": "virtual_disk_directlvm_disk_label",
-      "label": "Virtual Disk Directlvm Disk Label",
-      "description": "Generated",
+      "name": "nodejs_vm_resource_pool",
       "type": "string",
-      "default": "",
-      "validation": "",
-      "group_name": "vsphere_virtual_disk_storage",
-      "required": true,
-      "secured": false,
+      "description": "Target vSphere Resource Pool to host the virtual machine",
       "hidden": false,
+      "label": "vSphere Resource Pool - nodejs_vm",
+      "secured": false,
+      "required": false,
       "immutable": false,
-      "immutable_after_create": false
+      "group_name": "virtualmachine"
     },
     {
-      "name": "virtual_disk_directlvm_unit_number",
-      "label": "Virtual Disk Directlvm Unit Number",
-      "description": "The disk number on the SCSI bus. The maximum value for this setting is the value of scsi_controller_count times 15, minus 1 (so 14, 29, 44, and 59, for 1-4 controllers respectively). The default is 0, for which one disk must be set to. Duplicate unit numbers are not allowed.",
-      "type": "string",
-      "default": "2",
-      "validation": "",
-      "group_name": "vsphere_virtual_disk_storage",
-      "required": true,
-      "secured": false,
-      "hidden": false,
-      "immutable": false,
-      "immutable_after_create": false
+        "name": "ssh_user",
+        "label": "SSH User",
+        "description": "The user for ssh connection, which is default in template",
+        "default": "root",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": false,
+        "type": "string",
+        "group_name": "virtualmachine"
+    },
+    {
+        "name": "ssh_user_password",
+        "label": "SSH User Password",
+        "description": "The user password for ssh connection, which is default in template",
+        "hidden": false,
+        "immutable": false,
+        "required": true,
+        "secured": true,
+        "type": "password",
+        "group_name": "virtualmachine"
     }
   ],
-  "template_output_params": [  {
-    "name": "The IP address of the VM with NodeJs installed",
-    "label": "The Ip Address Of The Vm With Node Js Installed",
-    "description": "The Ip Address Of The Vm With Node Js Installed",
-    "group_name": "",
-    "secured": false,
-    "hidden": false,
-    "shortname": "",
-    "type": "string"
-  } ]
+  "template_output_params": []
 }

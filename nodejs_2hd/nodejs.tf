@@ -152,50 +152,11 @@ variable "nodejs_vm_root_disk_keep_on_remove" {
 
 variable "nodejs_vm_root_disk_size" {
   description = "Size of template disk volume. Should be equal to template's disk size"
-  default     = "120"
+  default     = "25"
 }
 
 variable "nodejs_vm_image" {
   description = "Operating system image id / template that should be used when creating the virtual image"
-}
-
-variable "virtual_disk_directlvm_size" {
-  type = "string"
-  description = "Generated"
-  default     = "100"
-}
-
-variable "virtual_disk_directlvm_vmdk_path" {
-  type = "string"
-  description = "Generated"
-  default     = ""
-}
-
-variable "virtual_disk_directlvm_datacenter_name" {
-  type = "string"
-  description = "The name of the datacenter in which to create the disk. Can be omitted when when ESXi or if there is only one datacenter in your infrastructure."
-}
-
-variable "virtual_disk_directlvm_datastore_name" {
-  type = "string"
-  description = "The name of the datastore in which to create the disk."
-  default = "directlvmstore"
-}
-
-variable "virtual_disk_directlvm_disk_type" {
-  type = "string"
-  description = "The type of disk to create. Can be one of eagerZeroedThick, lazy, or thin. Default: eagerZeroedThick."
-  default = "thin"
-}
-
-variable "virtual_disk_directlvm_disk_label" {
-  type = "string"
-  description = "Generated"
-}
-
-variable "virtual_disk_directlvm_unit_number" {
-  type = "string"
-  description = "The disk number on the SCSI bus. The maximum value for this setting is the value of scsi_controller_count times 15, minus 1 (so 14, 29, 44, and 59, for 1-4 controllers respectively). The default is 0, for which one disk must be set to. Duplicate unit numbers are not allowed."
 }
 
 # vsphere vm
@@ -239,11 +200,6 @@ resource "vsphere_virtual_machine" "nodejs_vm" {
     size           = "${var.nodejs_vm_root_disk_size}"
     keep_on_remove = "${var.nodejs_vm_root_disk_keep_on_remove}"
     datastore_id   = "${data.vsphere_datastore.nodejs_vm_datastore.id}"
-  }
-  disk {
-    attach = true
-    label  = "directlvm1.vmdk"
-    size   = "${var.virtual_disk_directlvm_size}"
   }
 
   connection {
@@ -291,14 +247,6 @@ EOF
     ]
   }
 }
-resource "vsphere_virtual_disk" "virtual_disk_directlvm" {
-  size          = "${var.virtual_disk_directlvm_size}"
-  vmdk_path     = "${var.virtual_disk_directlvm_vmdk_path}"
-  datacenter    = "${var.virtual_disk_directlvm_datacenter_name}"
-  datastore     = "${var.virtual_disk_directlvm_datastore_name}"
-  type          = "${var.virtual_disk_directlvm_disk_type}"
-}
-
 
 #########################################################
 # Output
